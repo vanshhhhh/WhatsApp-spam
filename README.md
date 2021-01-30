@@ -7,6 +7,6 @@ This is a .py script to spam on WhatsApp and annoy your friends
 ```
 pip install selenium
 ```
-- [chromedrive][https://chromedriver.chromium.org/] 
+- [chromedrive](https://chromedriver.chromium.org/)
 (Choose the version of chromedriver according to chrome version you are using)
 After Installing chromedriver paste it in C:\Python27\Scripts. Make sure this directory is added to PATH
