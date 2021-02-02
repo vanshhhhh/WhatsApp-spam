@@ -26,13 +26,11 @@ ask_contact=str(input("Enter contact's name: "))
 driver = webdriver.Chrome()
 driver.get('https://web.whatsapp.com/')
 time.sleep(3)
-user_name_list = ['Android']
-for user_name in user_name_list:
-    try:
-        user = WebDriverWait(driver,50).until(lambda driver: driver.find_element_by_xpath('//span[@title="{}"]'.format(user_name)))
-        user.click()
-    except NoSuchElementException as se:
-        new_chat(user_name)
+try:
+    user = WebDriverWait(driver,50).until(lambda driver: driver.find_element_by_xpath('//span[@title="{}"]'.format(ask_contact)))
+    user.click()
+except NoSuchElementException as se:
+        new_chat(ask_contact)
 inp_xpath = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'
 input_box = driver.find_element_by_xpath(inp_xpath)
 time.sleep(2)
