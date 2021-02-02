@@ -3,20 +3,36 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 import time
+def new_chat(user_name):
+    new_chat = driver.find_element_by_xpath('//div[@class="ZP8RM"]')
+    new_chat.click()
+    new_user = driver.find_element_by_xpath('//div[@class="_3u328 copyable-text selectable-text"]')
+    new_user.send_keys(user_name)
+    time.sleep(1)
+    try:
+        user = driver.find_element_by_xpath('//span[@title="{}"]'.format(user_name))
+        user.click()
+    except NoSuchElementException:
+        print('Given user "{}" not found in the contact list'.format(user_name))
+    except Exception as e:
+        driver.close()
+        print(e)
+        sys.exit()
 ask_num=int(input("Enter number of time to spam the message: "))
 ask_text = input("Enter the message you wanna spam: ")
-ask_contact=input("Enter contact's name: ")
+ask_contact=str(input("Enter contact's name: "))
 driver = webdriver.Chrome()
 driver.get('https://web.whatsapp.com/')
-inp_xpath_search = '//*[@id="side"]/div[1]/div/label/div/div[2]'
-input_box_search = WebDriverWait(driver,50).until(lambda driver: driver.find_element_by_xpath(inp_xpath_search))
-input_box_search.click()
-time.sleep(2)
-input_box_search.send_keys(ask_contact)
-time.sleep(2)
-selected_contact = driver.find_element_by_xpath("//span[@title='"+ask_contact+"']")
-selected_contact.click()
+time.sleep(3)
+user_name_list = ['Android']
+for user_name in user_name_list:
+    try:
+        user = WebDriverWait(driver,50).until(lambda driver: driver.find_element_by_xpath('//span[@title="{}"]'.format(user_name)))
+        user.click()
+    except NoSuchElementException as se:
+        new_chat(user_name)
 inp_xpath = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'
 input_box = driver.find_element_by_xpath(inp_xpath)
 time.sleep(2)
