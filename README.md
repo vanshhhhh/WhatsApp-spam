@@ -11,4 +11,4 @@ pip install selenium
 (Choose the version of chromedriver according to chrome version you are using)
   - After Installing chromedriver paste it in C:\Python27\Scripts. Make sure this directory is added to PATH
 # NOTE
-You have to scan the QR code using your whatsapp mobile app
+You have to scan the QR code using your whatsapp mobile app just once
