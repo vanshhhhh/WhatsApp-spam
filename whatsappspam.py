@@ -5,6 +5,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import time
+Chrome_Profile_Path = "user-data-dir=C:\\Users\\vansh\\AppData\\Local\\Google\\Chrome\\User Data\\Wtsp"
+options = webdriver.ChromeOptions()
+options.add_argument(Chrome_Profile_Path)
 def new_chat(user_name):
     new_chat = driver.find_element_by_xpath('//div[@class="ZP8RM"]')
     new_chat.click()
